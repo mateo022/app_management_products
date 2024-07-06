@@ -1,0 +1,43 @@
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar {
+    min-height: 80px;
+    /* Ajusta la altura del navbar según sea necesario */
+}
+
+.navbar-toggler {
+    margin-right: auto;
+}
+
+/* styles.css or your component-specific CSS */
+.navbar-logo {
+    height: 45px;
+    /* Ajusta la altura según sea necesario */
+    width: 110px;
+    /* Ajusta el ancho según sea necesario */
+    background-image: url('../../../../assets/img/png/Recurso_4.png');
+    background-size: cover;
+    /* Ajusta la imagen para que cubra todo el div */
+    background-position: center;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+}
+
+.navbar-logo:hover {
+    cursor: pointer;
+    /* Opcional: añade un cursor de puntero al pasar por encima */
+}
+
+@media (max-width: 576px) {
+    .navbar-logo {
+        position: absolute;
+        height: 45px;
+        left: 75%;
+        width: 110px;
+    }
+}

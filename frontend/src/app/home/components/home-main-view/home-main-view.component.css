@@ -1,0 +1,55 @@
+body {
+    padding-top: 56px;
+}
+
+h2 {
+    margin-top: 1rem;
+}
+
+.container {
+    padding: 2rem 0;
+
+}
+#nosotros{
+    display: flex;
+}
+.text1{
+    color: #1b4d40;
+
+}
+.text2{
+    color: #e67b0d;
+}
+.text1,
+.text2 {
+    font-family: "Protest Revolution", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 56px;
+}
+
+.contact {
+    background-image: url('../../../../assets/img/png/Recurso_7.png');
+    background-size: cover;
+    /* Ajusta la imagen para que cubra todo el div */
+    background-position: center;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    width: 13%;
+    height: 10%;
+    position: absolute;
+    margin-top: 2%;
+    cursor: pointer;
+}
+.box2{
+    background-image: url('../../../../assets/img/png/Recurso_3.png');
+    background-size: cover;
+    /* Ajusta la imagen para que cubra todo el div */
+    background-position: center;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    width: 13%;
+    height: 10%;
+}
