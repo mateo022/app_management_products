@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomeMainViewComponent } from './components/home-main-view/home-main-view.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { HomeRoutingModule } from './home-routing.module';
     HomeMainViewComponent
   ],
   imports: [
+    CommonModule, 
     BrowserModule,
     HomeRoutingModule,
     ReactiveFormsModule,
@@ -22,7 +24,8 @@ import { HomeRoutingModule } from './home-routing.module';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule 
   ]
 })
 export class HomeModule { }

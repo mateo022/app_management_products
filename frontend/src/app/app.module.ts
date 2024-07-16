@@ -8,6 +8,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BasicLayoutComponent } from './layouts/basic-layout/basic-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { CommonModule } from '@angular/common';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
     declarations: [
@@ -19,11 +21,13 @@ import { AuthModule } from './auth/auth.module';
     ],
     bootstrap: [AppComponent],
     imports: [
+        CommonModule ,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
         SharedModule,
-        AuthModule
+        AuthModule,
+        HomeModule
     ]
 })
 export class AppModule { }

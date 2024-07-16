@@ -1,4 +1,28 @@
 <!-- landing.component.html -->
+
+<a href="javascript:void(0)" class="whatsapp-icon" (click)="openQRCode()">
+    <img src="../../../../assets/img/png/whatIcon.png" alt="Contactar por WhatsApp">
+</a>
+
+<!-- Modal para mostrar el QR -->
+<div class="modal" id="qrModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-lg shadow-lg">
+            <div class="modal-header">
+                <h5 class="modal-title">Escanea el QR para contactarnos por WhatsApp</h5>
+            </div>
+            <div class="modal-body text-center">
+                <img src="../../../../assets/img/jpg/QRContact.jpeg" alt="QR Code para WhatsApp" class="img-fluid rounded">
+                <p class="mt-3">Si prefieres, puedes contactar directamente por WhatsApp Web:</p>
+                <a href="https://wa.me/+573147894195" target="_blank" class="btn btn-success">Abrir WhatsApp Web</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeQRCode()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="nosotros" class="container my-5 pt-5">
     <div class="box1">
         <h2 class="text1">Colores que inspiran</h2>
@@ -10,26 +34,73 @@
 
 </div>
 
-<div id="catalogo" class="container my-5 pt-5">
-    <h2>Catálogo</h2>
-    <p>Información del catálogo...</p>
-</div>
+<div class="container" id="catalogo">
+    <h2 class="text-center my-4 catalog-title" >¡Bienvenido a Nuestro Catálogo!</h2>
+    <p class="text-center catalog-subtitle">Explora nuestra selección de productos únicos y encuentra lo que amas.</p>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let product of products">
+        <div class="card custom-card mb-4 shadow">
+          <div class="card-image-wrapper">
+            <img [src]="product.product_image" class="card-img-top" alt="{{ product.product_name }}">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ product.product_name }}</h5>
+            <p class="card-text">{{ product.product_description }}</p>
+            <p class="card-text">Precio: {{ product.product_price | currency }}</p>
+            <p class="card-text">Cantidad: {{ product.product_quantity }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mb-3">
+      <div class="col text-center">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Total productos: {{ totalProducts }}</span>
+          <select class="form-select" [(ngModel)]="perPage" (change)="updatePerPage(perPage)">
+            <option [value]="5">5</option>
+            <option [value]="10">10</option>
+            <option [value]="15">15</option>
+            <option [value]="20">20</option>
+          </select>
+          <span class="input-group-text">por página</span>
+        </div>
+      </div>
+    </div>
+  
+    <nav>
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="previousPage()">Anterior</button>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
+            [class.active]="currentPage === i + 1">
+          <button class="page-link" (click)="currentPage = i + 1; loadProducts()">{{ i + 1 }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="nextPage()">Siguiente</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+  
 
-<div id="contact" class="container my-5 pt-5">
-    <h2>Contáctanos</h2>
-    <form>
+  <div id="contact" class="container my-5 pt-5">
+    <h2 class="text-center mb-4 contact-title">Contáctanos</h2>
+    <form class="contact-form">
         <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" placeholder="Ingresa tu nombre">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" id="email" placeholder="Ingresa tu email">
         </div>
         <div class="mb-3">
             <label for="message" class="form-label">Mensaje</label>
-            <textarea class="form-control" id="message" rows="3"></textarea>
+            <textarea class="form-control" id="message" rows="5" placeholder="Escribe tu mensaje aquí"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-contact">Enviar</button>
     </form>
 </div>

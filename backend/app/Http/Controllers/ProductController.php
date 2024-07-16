@@ -12,9 +12,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Product::paginate();
+        $perPage = $request->input('per_page', 10); // Valor por defecto: 10
+        return Product::paginate($perPage);
     }
 
     /**
