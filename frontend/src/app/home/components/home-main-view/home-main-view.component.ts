@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/products.model';
 import { ProductService } from '../../services/products.services';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-home-main-view',
@@ -8,15 +9,17 @@ import { ProductService } from '../../services/products.services';
   styleUrl: './home-main-view.component.css'
 })
 export class HomeMainViewComponent implements OnInit {
-  products: Product[] = [];
+  products: any[] = [];
+  totalProducts: number = 0;
+  perPage: number = 10;
   currentPage: number = 1;
-  totalPages: number = 1;
-  totalProducts: number = 0; // Total de productos
-  perPage: number = 10; // Productos por página
+  totalPages: number = 0;
+  selectedImage: string;
+  isModalOpen: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadProducts();
   }
 
@@ -31,24 +34,27 @@ export class HomeMainViewComponent implements OnInit {
     });
   }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.loadProducts();
-    }
+  toggleCard(product: any): void {
+    product.isFlipped = !product.isFlipped;
   }
 
-  previousPage() {
+  updatePerPage(perPage: number): void {
+    this.perPage = perPage;
+    this.loadProducts();
+  }
+
+  previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.loadProducts();
     }
   }
 
-  updatePerPage(newPerPage: number) {
-    this.perPage = newPerPage;
-    this.currentPage = 1; // Reinicia a la primera página
-    this.loadProducts();
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadProducts();
+    }
   }
   openQRCode() {
     const modal = document.getElementById('qrModal');
@@ -64,5 +70,13 @@ export class HomeMainViewComponent implements OnInit {
       modal.classList.remove('show'); // Ocultar el modal
       modal.style.display = 'none'; // Asegúrate de ocultarlo
     }
+  }
+  openModalImage(image: string) {
+    this.selectedImage = image;
+    this.isModalOpen = true;
+  }
+
+  closeModalImage() {
+    this.isModalOpen = false;
   }
 }

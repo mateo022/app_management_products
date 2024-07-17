@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
             "product_reference" => ['required'],
             "product_size" => ['required'], // Multiple rules in Array format
             "product_description" => ['required', 'max:255', 'nullable'],
-            "product_image" => 'nullable|max:255', //Multiple rules in String format
+            'product_image' => 'nullable|image|max:10240|mimes:jpg,jpeg,png,bmp,gif,svg,webp',
             "category_id" => ['required','integer'],
             "product_price" => ['required', 'integer']
         ];

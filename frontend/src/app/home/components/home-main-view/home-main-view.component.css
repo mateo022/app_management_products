@@ -106,18 +106,30 @@ h2 {
     margin-top: 2%;
     cursor: pointer;
 }
-.box2{
-    background-image: url('../../../../assets/img/png/Recurso_3.png');
-    background-size: cover;
-    /* Ajusta la imagen para que cubra todo el div */
-    background-position: center;
-    /* Centra la imagen */
-    background-repeat: no-repeat;
-    /* Evita que la imagen se repita */
-    width: 13%;
-    height: 10%;
+#nosotros {
+  /* background-color: #f8f9fa; */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.description {
+  font-size: 1.1rem;
+  color: #333; /* Color del texto */
+  margin: 20px 0;
 }
 
+.btn-exclusivo {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-exclusivo:hover {
+  background-color: #0056b3; /* Color más oscuro en hover */
+}
 .catalog-title {
     font-size: 2.5rem; /* Tamaño grande */
     font-weight: bold; /* Negrita */
@@ -135,58 +147,106 @@ h2 {
   }
 
 
-.custom-card {
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
-    background: #fff;
+  .custom-card {
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
   .custom-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 12px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
   
-  /* Estilos para la imagen de la card */
   .card-image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    height: 200px; /* Fija la altura del contenedor de la imagen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
   
   .card-img-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-  }
-  
-  /* Estilos para el cuerpo de la card */
-  .card-body {
-    padding: 20px;
+    width: auto;
+    transition: transform 0.3s ease;
   }
   
   .card-title {
+    font-size: 1.2rem;
     font-weight: bold;
-    font-size: 1.25rem;
-    color: #333;
   }
   
   .card-text {
-    color: #555;
+    font-size: 1rem;
   }
+  
+  .click-indicator {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #007bff;
+    display: flex;
+    align-items: center;
+  }
+  
+  .click-indicator i {
+    margin-right: 5px; /* Espacio entre la flecha y el texto */
+  }
+  .click-indicator:hover{
+    transform: translateY(2px);
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
+  }
+  .additional-info {
+    margin-top: 10px;
+  }
+  
+  .d-none {
+    display: none !important;
+  }
+
+  .icon-search {
+    position: fixed;
+    color: rgba(255, 255, 255, 0.595);
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.icon-search:hover {
+    transform: scale(1.1); /* Efecto de hover */
+    color: white;
+}
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+}
+
+.modal.show {
+    display: block; /* Muestra el modal */
+}
+
+.modal-img {
+    margin: auto;
+    display: block;
+    max-width: 90%; /* Tamaño máximo de la imagen */
+    max-height: 90%; /* Tamaño máximo de la imagen */
+}
   
   /* Estilos para la paginación */
   .pagination .page-item.active .page-link {
     background-color: #007bff;
     border-color: #007bff;
     color: #fff;
+    z-index: 0 !important;
   }
   
   .pagination .page-link {
@@ -223,7 +283,7 @@ h2 {
   .contact-title {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #fff; /* Color claro para contraste */
+    color: #007bff; /* Color claro para contraste */
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
     margin-bottom: 20px;
 }

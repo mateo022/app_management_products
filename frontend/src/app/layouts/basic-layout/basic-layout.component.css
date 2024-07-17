@@ -20,6 +20,9 @@ html, body {
 .body {
   flex-grow: 1; /* Expande el cuerpo para llenar el espacio restante */
   overflow-y: auto; /* Permitir desplazamiento vertical si el contenido excede la altura */
+  margin-top: 5%;
+  margin-bottom: 5%;
+
 }
 
 .footer {
