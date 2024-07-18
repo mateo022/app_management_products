@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/products.model';
 import { ProductService } from '../../services/products.services';
 import * as bootstrap from 'bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home-main-view',
@@ -16,8 +17,19 @@ export class HomeMainViewComponent implements OnInit {
   totalPages: number = 0;
   selectedImage: string;
   isModalOpen: boolean = false;
+  contactForm: FormGroup;
+  submitted = false;
+  showModal = false;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    private fb: FormBuilder
+  ) {
+    this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', Validators.required]
+    });
+   }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -78,5 +90,21 @@ export class HomeMainViewComponent implements OnInit {
 
   closeModalImage() {
     this.isModalOpen = false;
+  }
+
+  // Contact
+  onSubmit() {
+    if (this.contactForm.valid) {
+      const contactData = this.contactForm.value;
+      this.saveContactData(contactData);
+      this.submitted = true;
+    }
+  }
+
+  saveContactData(data: any) {
+    let contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+    contacts.push(data);
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+    console.log('Contacts saved in localStorage:', contacts);
   }
 }

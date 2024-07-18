@@ -95,21 +95,34 @@
 
 <div id="contact" class="container my-5 pt-5">
   <h2 class="text-center mb-4 contact-title">Contáctanos</h2>
-  <form class="contact-form">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" class="contact-form">
     <div class="mb-3">
       <label for="name" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="name" placeholder="Ingresa tu nombre">
+      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Ingresa tu nombre">
+      <div *ngIf="contactForm.get('name').invalid && contactForm.get('name').touched" class="text-danger">
+        Nombre es requerido.
+      </div>
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="Ingresa tu email">
+      <input type="email" class="form-control" id="email" formControlName="email" placeholder="Ingresa tu email">
+      <div *ngIf="contactForm.get('email').invalid && contactForm.get('email').touched" class="text-danger">
+        Email es requerido y debe ser válido.
+      </div>
     </div>
     <div class="mb-3">
       <label for="message" class="form-label">Mensaje</label>
-      <textarea class="form-control" id="message" rows="5" placeholder="Escribe tu mensaje aquí"></textarea>
+      <textarea class="form-control" id="message" formControlName="message" rows="5" placeholder="Escribe tu mensaje aquí"></textarea>
+      <div *ngIf="contactForm.get('message').invalid && contactForm.get('message').touched" class="text-danger">
+        Mensaje es requerido.
+      </div>
     </div>
-    <button type="submit" class="btn btn-contact">Enviar</button>
+    <button type="submit" class="btn btn-contact" [disabled]="contactForm.invalid">Enviar</button>
   </form>
+  <div *ngIf="submitted" class="text-center">
+    <i class="fas fa-check-circle fa-3x text-success"></i>
+    <p class="mt-3">El formulario fue enviado con éxito.</p>
+  </div>
 </div>
 
 <!-- MODAL ABRIR IMAGEN CATALOGO -->
@@ -120,7 +133,7 @@
       <img [src]="selectedImage" class="modal-img" alt="Imagen del producto">
     </div>
   </div>
-  <div class="closeModal">
+  <!-- <div class="closeModal">
     <span (click)="closeModalImage()">CERRAR</span>
-  </div>
+  </div> -->
 </div>
